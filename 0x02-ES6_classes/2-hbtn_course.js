@@ -13,31 +13,14 @@ export default class HolbertonCourse {
   get students() { return this._students; }
 
   set name(Name) {
-    if (typeof Name === 'string') {
-      this._name = Name;
-    } else {
-      throw new TypeError('Name must be a string');
-    }
+    this._name = Name;
   }
 
   set lenght(lent) {
-    if (typeof lent === 'number') {
-      this._lenght = lent;
-    } else {
-      throw new TypeError('Length must be a number');
-    }
+    this._lenght = lent;
   }
 
   set students(Students) {
-    if (typeof Students === 'object') {
-      for (const Student of Students) {
-        if (typeof Student !== 'string') {
-          throw new TypeError('Student must be an array of strings');
-        }
-      }
-    } else {
-      throw new TypeError('Student must be an array');
-    }
     this._students = Students;
   }
 }
