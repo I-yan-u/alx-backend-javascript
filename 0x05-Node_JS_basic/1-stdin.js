@@ -7,7 +7,7 @@ process.stdin.on('data', (data) => {
 
   if (name) {
     console.log(`Your name is: ${name}`);
-    // process.exit();
+    process.exit();
   }
 });
 
