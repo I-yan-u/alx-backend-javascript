@@ -1,45 +1,47 @@
 const fs = require('fs');
 
-function analyze(field, list) {
-  let student = [];
-  let student_str = '';
+function analyze (field, list) {
+  const student = [];
+  let studentStr = '';
   list.forEach(stud => {
-    if (stud[stud.length - 1] === field)
-    student.push(stud[0]);
+    if (stud[stud.length - 1] === field) {
+      student.push(stud[0]);
+    }
   });
   for (let i = 0; i < student.length - 1; i++) {
-    student_str += student[i] + ',' + ' ';
+    studentStr += student[i] + ',' + ' ';
   }
-  student_str += student[student.length - 1];
+  studentStr += student[student.length - 1];
 
-  return [student_str, student.length];
+  return [studentStr, student.length];
 }
 
-function checkField(student_list, index) {
-  return student_list[index];
+function checkField (studentList, index) {
+  return studentList[index];
 }
 
-function countStudents(filename) {
-  let fields = [];
-  let students_list = [];
+function countStudents (filename) {
+  const fields = [];
+  const studentsList = [];
 
   fs.readFile(filename, 'utf-8', (err, data) => {
     if (err) throw new Error('Cannot load the database');
     else {
-      let students = data.split('\n');
+      const students = data.split('\n');
       students.shift();
-      let len = students.length;
+      const len = students.length;
       console.log(`Number of students: ${len}`);
 
       students.forEach(student => {
-        let student_list = student.split(',');
-        students_list.push(student_list);
-        let field = checkField(student_list, student_list.length - 1);
-        if (!fields.includes(field))
-        fields.push(field);
+        const studentList = student.split(',');
+        studentsList.push(studentList);
+        const field = checkField(studentList, studentList.length - 1);
+        if (!fields.includes(field)) {
+          fields.push(field);
+        }
       });
       fields.forEach(field => {
-        const [res, len] = analyze(field, students_list);
+        const [res, len] = analyze(field, studentsList);
         console.log(`Number of students in ${field}: ${len}. List: ${res}`);
       });
     }
